@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        li {
+            list-style-type: none;
+            display: flex;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #b5faeb;
+            align-items: center;
+
+
+            justify-content: space-between;
+
+
+        }
+
+        li.fav {
+            background-color: pink;
+        }
+
+        img {
+            max-height: 200px;
+            max-width: 200px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div id="app">
+
+        <ul v-if="showBooks">
+            <li v-for="book in books" :class="{fav: book.isFav}" @click="toggleFav(book)">
+
+                <img :src="book.img" alt="">
+                <h2>
+                    {{ book.title }}
+                </h2>
+
+                <h2>
+
+                    {{book.author}}
+                </h2>
+
+            </li>
+        </ul>
+        <button @click="toggleShow"><span v-if="!showBooks">Show books</span>
+            <span v-show="showBooks">Hide books</span></button>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
