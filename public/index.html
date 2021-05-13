@@ -6,12 +6,60 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        li {
+            list-style-type: none;
+            display: flex;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #b5faeb;
+            align-items: center;
+
+
+            justify-content: space-between;
+
+
+        }
+
+        li.fav {
+            background-color: pink;
+        }
+
+        img {
+            max-height: 200px;
+            max-width: 200px;
+        }
+    </style>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+    <ul v-if="showBooks">
+            <li v-for="book in books" :class="{fav: book.isFav}" @click="toggleFav(book)">
+
+                <img :src="book.img" alt="">
+                <h2>
+                    {{ book.title }}
+                </h2>
+
+                <h2>
+
+                    {{book.author}}
+                </h2>
+
+            </li>
+        </ul>
+        <button @click="toggleShow"><span v-if="!showBooks">Show books</span>
+            <span v-show="showBooks">Hide books</span></button>
     <!-- built files will be auto injected -->
   </body>
 </html>
